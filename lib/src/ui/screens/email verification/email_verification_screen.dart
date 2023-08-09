@@ -48,44 +48,45 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
         ),
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            spacerH64,
-            const ScreenHeader(
-              title: 'Welcome Back!',
-              subtitle: 'Please Enter Your Email Address',
-            ),
-            spacerH16,
-            Padding(
-              padding: const EdgeInsets.all(24),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: <Widget>[
-                    AppTextFormFieldWidget(
-                      hintText: 'Enter your email',
-                      textInputType: TextInputType.emailAddress,
-                      controller: _emailController,
-                      validator: (email) {
-                        final bool isEmailValid = RegExp(
-                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                            .hasMatch(email ?? '');
-                        if (isEmailValid) {
-                          return null;
-                        }
-                        return 'Enter valid email';
-                      },
-                    ),
-                    spacerH8,
-                    AppElevatedButtonWidget(
-                      buttonText: 'Next',
-                      onPressed: () {},
-                    ),
-                  ],
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const ScreenHeader(
+                  title: 'Welcome Back!',
+                  subtitle: 'Please Enter Your Email Address',
                 ),
-              ),
+                spacerH16,
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: <Widget>[
+                      AppTextFormFieldWidget(
+                        hintText: 'Enter your email',
+                        textInputType: TextInputType.emailAddress,
+                        controller: _emailController,
+                        validator: (email) {
+                          final bool isEmailValid = RegExp(
+                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                              .hasMatch(email ?? '');
+                          if (isEmailValid) {
+                            return null;
+                          }
+                          return 'Enter valid email';
+                        },
+                      ),
+                      spacerH8,
+                      AppElevatedButtonWidget(
+                        buttonText: 'Next',
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
