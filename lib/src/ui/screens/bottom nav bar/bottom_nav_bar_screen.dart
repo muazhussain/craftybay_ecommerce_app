@@ -52,7 +52,9 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
         showUnselectedLabels: true,
         onTap: (value) {
           _selectedIndex = value;
-          setState(() {});
+          if (mounted) {
+            setState(() {});
+          }
         },
         currentIndex: _selectedIndex,
       ),
